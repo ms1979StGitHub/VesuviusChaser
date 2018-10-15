@@ -11,12 +11,24 @@ import {
 } from 'react-native';
 import { WebBrowser } from 'expo';
 import { MonoText } from '../components/StyledText';
+import { Icon } from 'react-native-elements'
+import PureChart from 'react-native-pure-chart';
 
-import PieChart from 'react-native-pie-chart';
-
-const chart_wh = 250
-    const series = [7, 10, 15]
-    const sliceColor = ['#ff0000','#ffff00','#009900']  
+let sampleData = [
+  {
+    value: 5,
+    label: 'Chase',
+    color: '#ff0000',
+  }, {
+    value: 7,
+    label: 'Monitor',
+    color: '#ffff00'
+  }, {
+    value: 25,
+    label: 'Pet',
+    color: '#009900'
+  }
+]
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -44,23 +56,23 @@ export default class HomeScreen extends React.Component {
             
           </View>
 
-          <View>
+          <View style={styles.pieView}>
+                         
           
-          <StatusBar
-            hidden={true}
-          />
-          
-          
-          <Text style={styles.pieChartText}>Chaser statistic</Text>  
-          <PieChart style={styles.pieChartContainer}  
-            chart_wh={chart_wh}
-            series={series} 
-            sliceColor={sliceColor}
-            doughnut={true}
-            coverRadius={0.45}
-            coverFill={'#FFF'} 
-          />
-  
+          <Text style={styles.pieChartText}>Click on a color in pie diagram to see values</Text>
+
+          <View style={styles.pieRowView} >
+          <PureChart select data={sampleData} type='pie'  />
+
+          <View style={styles.iconView} >   
+          <Icon reverse name='ios-happy' type='ionicon' color='#009900' />
+          <Icon reverse type='ionicon' color='#ffff00' />
+          <Icon reverse name='ios-alert' type='ionicon' color='#ff0000' />
+          </View>
+
+          </View>
+
+
           </View>
 
         </ScrollView>         
@@ -147,8 +159,25 @@ const styles = StyleSheet.create({
     paddingHorizontal: 4,
   },
 
-  pieChartContainer: {
+  pieView: {
+    flex: '1',
+    flexDirection: 'column',
+    justifyContent: 'center',
     alignItems: 'center',
+    marginHorizontal: 50,
+  },
+
+  iconView: {
+    flexDirection: 'column',
+    justifyContent: 'space-around',
+    alignItems: 'flex-end',
+    marginHorizontal: 50,
+  },
+
+  pieRowView: {
+    flexDirection: 'row',
+    justifyContent: 'flex-center',
+    alignItems: 'stretch',
     marginHorizontal: 50,
   },
 

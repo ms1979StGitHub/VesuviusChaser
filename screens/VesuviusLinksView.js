@@ -21,6 +21,7 @@ optionsTitleText: {
   marginLeft: 15,
   marginTop: 9,
   marginBottom: 12,
+  color:'#fcc8c0'
 },
 optionIconContainer: {
   marginRight: 9,
